@@ -1,254 +1,226 @@
-# Redis Open Chat
+# Redisroom
 
-A minimal real-time chat application built to **learn Redis from scratch**.
+Redisroom is a small Next.js project for learning Redis by building a real-time chat app.
 
-The goal of this project is **not** to build another chat application.
+The goal is not to create a complex chat product. The goal is to understand how Redis works by using it as the main data store for practical chat features.
 
-The goal is to understand **how Redis works** by building a real application where Redis is the primary database.
+## Tech Stack
 
----
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Redis
+- ioredis
+- Socket.IO
+- Docker
+- RedisInsight
 
-# Objectives
+## Requirements
 
-* Learn Redis by building a practical project.
-* Understand every Redis data structure.
-* Keep the codebase small and easy to understand.
-* Avoid unnecessary abstractions.
-* Learn one Redis concept at a time.
+- Node.js
+- npm
+- Docker Desktop
 
----
+## Getting Started
 
-# Tech Stack
+Install dependencies:
 
-## Frontend
-
-* Next.js
-* React
-* TypeScript
-* Tailwind CSS
-
-## Backend
-
-* Next.js API
-* Socket.IO
-
-## Database
-
-* Redis
-
-## Development Tools
-
-* Docker
-* RedisInsight
-
----
-
-# Project Philosophy
-
-This project intentionally avoids:
-
-* PostgreSQL
-* MongoDB
-* Firebase
-* Authentication
-* Complex architecture
-* Multiple services
-* Repository pattern
-* Microservices
-
-The focus is Redis.
-
----
-
-# Application
-
-Everyone joins the same chat room.
-
-Users only enter a display name.
-
-Features include:
-
-* Public chat room
-* Real-time messaging
-* Online users
-* Typing indicator
-* Message history
-* Statistics
-* Rate limiting
-
----
-
-# Redis Learning Roadmap
-
-## Step 1
-
-Redis Setup
-
-Learn
-
-* Redis Server
-* Redis CLI
-* RedisInsight
-
----
-
-## Step 2
-
-Redis Connection
-
-Learn
-
-* Connecting from Next.js
-* ioredis
-* Environment variables
-
----
-
-## Step 3
-
-Redis Strings
-
-We'll use Strings for
-
-* Counters
-* Statistics
-* Rate limiting
-
-Commands
-
-* SET
-* GET
-* INCR
-* DECR
-
----
-
-## Step 4
-
-Redis Lists
-
-We'll use Lists for
-
-* Chat history
-
-Commands
-
-* LPUSH
-* RPUSH
-* LRANGE
-* LTRIM
-
----
-
-## Step 5
-
-Redis Sets
-
-We'll use Sets for
-
-* Online users
-
-Commands
-
-* SADD
-* SREM
-* SMEMBERS
-
----
-
-## Step 6
-
-Redis Hashes
-
-We'll use Hashes for
-
-* User information
-
-Commands
-
-* HSET
-* HGETALL
-
----
-
-## Step 7
-
-Redis Sorted Sets
-
-We'll use Sorted Sets for
-
-* Most active users
-* Recent activity
-
-Commands
-
-* ZADD
-* ZRANGE
-* ZREVRANGE
-
----
-
-## Step 8
-
-TTL
-
-We'll use TTL for
-
-* Typing indicator
-* Temporary data
-* Presence
-
-Commands
-
-* SET EX
-* EXPIRE
-* TTL
-
----
-
-## Step 9
-
-Pub/Sub
-
-Learn
-
-* Real-time communication
-* Event broadcasting
-
-Commands
-
-* PUBLISH
-* SUBSCRIBE
-
----
-
-## Step 10
-
-Transactions
-
-Learn
-
-* MULTI
-* EXEC
-
----
-
-## Step 11
-
-Pipeline
-
-Learn
-
-* Batch operations
-* Performance optimization
-
----
-
-# Redis Keys
-
-The application will use simple, readable keys.
-
+```bash
+npm install
 ```
+
+Start Redis and RedisInsight:
+
+```bash
+docker compose up -d
+```
+
+Create `.env.local` in the project root:
+
+```env
+REDIS_URL=redis://localhost:6379
+```
+
+Start the Next.js development server:
+
+```bash
+npm run dev
+```
+
+Open the app:
+
+```text
+http://localhost:3000
+```
+
+Open RedisInsight:
+
+```text
+http://localhost:5540
+```
+
+## Scripts
+
+```bash
+npm run dev
+npm run build
+npm run start
+npm run lint
+```
+
+## Project Structure
+
+```text
+redisroom/
+  app/
+    globals.css
+    layout.tsx
+    page.tsx
+  public/
+  docker-compose.yml
+  next.config.ts
+  package.json
+  README.md
+  tsconfig.json
+```
+
+## Application Plan
+
+Everyone joins one shared chat room. Users only enter a display name.
+
+Planned features:
+
+- Public chat room
+- Real-time messaging
+- Message history
+- Online users
+- Typing indicator
+- Chat statistics
+- Rate limiting
+
+## Redis Learning Roadmap
+
+### 1. Redis Setup
+
+Learn:
+
+- Redis server
+- Redis CLI
+- RedisInsight
+- Docker Compose
+
+### 2. Redis Connection
+
+Learn:
+
+- Connecting Next.js to Redis
+- Using ioredis
+- Reading `REDIS_URL` from `.env.local`
+
+### 3. Strings
+
+Use for:
+
+- Counters
+- Statistics
+- Rate limiting
+
+Commands:
+
+- `SET`
+- `GET`
+- `INCR`
+- `DECR`
+
+### 4. Lists
+
+Use for:
+
+- Chat message history
+
+Commands:
+
+- `LPUSH`
+- `RPUSH`
+- `LRANGE`
+- `LTRIM`
+
+### 5. Sets
+
+Use for:
+
+- Online users
+
+Commands:
+
+- `SADD`
+- `SREM`
+- `SMEMBERS`
+
+### 6. Hashes
+
+Use for:
+
+- User information
+
+Commands:
+
+- `HSET`
+- `HGETALL`
+
+### 7. Sorted Sets
+
+Use for:
+
+- Most active users
+- Recent activity
+
+Commands:
+
+- `ZADD`
+- `ZRANGE`
+- `ZREVRANGE`
+
+### 8. TTL
+
+Use for:
+
+- Typing indicators
+- Temporary presence data
+- Expiring rate limits
+
+Commands:
+
+- `SET EX`
+- `EXPIRE`
+- `TTL`
+
+### 9. Pub/Sub
+
+Use for:
+
+- Broadcasting chat events
+- Real-time updates
+
+Commands:
+
+- `PUBLISH`
+- `SUBSCRIBE`
+
+### 10. Transactions and Pipelines
+
+Learn:
+
+- `MULTI`
+- `EXEC`
+- Pipelined batch operations
+
+## Redis Keys
+
+The app should use simple, readable Redis keys:
+
+```text
 chat:messages
 chat:online
 chat:typing
@@ -257,90 +229,31 @@ chat:users
 chat:activity
 ```
 
----
+## Development Rules
 
-# Folder Structure
+- Keep the project small.
+- Build one Redis concept at a time.
+- Test Redis operations with Redis CLI or RedisInsight.
+- Do not add another database.
+- Prefer clear code over abstractions.
+- Keep the project rooted directly in `redisroom`.
 
-```
-redis-open-chat/
+## Current Progress
 
-app/
-    page.tsx
-    layout.tsx
-    globals.css
+- [x] Next.js project created
+- [x] Redis dependency installed
+- [x] Socket.IO dependency installed
+- [x] Docker Compose file added for Redis and RedisInsight
+- [x] Project files moved to the `redisroom` root
+- [ ] Connect Next.js to Redis
+- [ ] Build chat UI
+- [ ] Save messages
+- [ ] Load message history
+- [ ] Track online users
+- [ ] Add typing indicator
+- [ ] Add statistics
+- [ ] Add rate limiting
 
-lib/
-    redis.ts
+## Final Goal
 
-server.ts
-
-docker-compose.yml
-
-.env.local
-
-package.json
-```
-
-The project intentionally keeps very few files so that learning Redis remains the primary focus.
-
----
-
-# Development Rules
-
-* Keep the project simple.
-* One feature at a time.
-* Understand every Redis command before writing code.
-* Test every Redis operation using Redis CLI and RedisInsight.
-* Do not introduce another database.
-* Do not optimize early.
-* Prefer clarity over cleverness.
-
----
-
-# Learning Workflow
-
-For every feature we build, answer four questions:
-
-1. What did the user do?
-2. What did Next.js send to Redis?
-3. What changed inside Redis?
-4. Why did we use this Redis data structure?
-
----
-
-# Current Learning Progress
-
-* [x] Redis installed
-* [x] RedisInsight installed
-* [x] Redis CLI tested
-* [ ] Connect Next.js to Redis
-* [ ] Build chat UI
-* [ ] Save messages
-* [ ] Load message history
-* [ ] Online users
-* [ ] Typing indicator
-* [ ] Statistics
-* [ ] Rate limiting
-* [ ] Deployment
-
----
-
-# Final Goal
-
-By the end of this project, I should understand:
-
-* Redis Strings
-* Redis Lists
-* Redis Sets
-* Redis Hashes
-* Redis Sorted Sets
-* TTL
-* Pub/Sub
-* Transactions
-* Pipelines
-
-More importantly, I should know **when** to use each feature in a real application.
-
-This project is not about becoming good at chat applications.
-
-It is about becoming confident with Redis.
+By the end of this project, the main outcome should be confidence with Redis data structures and knowing when to use each one in a real application.
