@@ -1,0 +1,12 @@
+services:
+  redis:
+    image: redis:7
+    container_name: redisroom
+    ports:
+      - "6379:6379"
+
+  redisinsight:
+    image: redis/redisinsight:latest
+    container_name: redisroom-insight
+    ports:
+      - "5540:5540"
